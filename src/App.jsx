@@ -17,12 +17,22 @@ function App() {
   // מערך המוצרים בעגלה
   const [ShoppingCart, setShoppingCart] = useState([]);
 
-  function addP() {
-    alert("הפריט נוסף בהצלחה")
+  //פונקצייה המקבלת אובייקט מוצר ומוסיפה אותו למערך המוצרים של העגלה
+  const addP = (product) => {
+    //עדכון מערךל מוצרי העגלה-כך שיהיה שווה לתוכן שלו + האובייקט שנוסף
+    setShoppingCart([...ShoppingCart, product]);
   }
-
-  function removeP() {
-    alert("הפריט הוסר בהצלחה")
+  
+  //פונקציה המקבלת אובייקט מוצר ומוחקת אותו ממערך מוצרי העגלה
+  const removeP = (product) => {
+    //ID מציאת המיקום של האובייקט במערך מוצרי העגלה על פי ה
+    const index = ShoppingCart.findIndex(p => p.id == product.id);
+    //העתקת תוכן המערך למשתנה זמני
+    const temp = [...ShoppingCart];
+    //מחיקת האובייקט הנבחר מהמשתנה הזמני לפי המיקום שלו
+    temp.splice(index, 1)
+    //העתקת תוכן המשתנה הזמני חזרה למערך מוצרי העגלה
+    setShoppingCart([...temp])
   }
 
   return (
@@ -35,7 +45,7 @@ function App() {
             <div className="prod1">
               <h3>{p.name}</h3>
               <h4>{p.price}</h4>
-              <button onClick={addP}>הוסף לסל</button>
+              <button onClick={() => addP(p)}>הוסף לסל</button>
             </div>)}
         </div>
 
@@ -45,7 +55,7 @@ function App() {
             <div className="prod2">
               <h5>{p.name}</h5>
               <h5>{p.price}</h5>
-              <button onClick={removeP}>הסר מהעגלה</button>
+              <button onClick={() => removeP(p)}>הסר מהעגלה</button>
             </div>)}
         </div>
       </div>
