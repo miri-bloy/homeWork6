@@ -1,0 +1,108 @@
+body{
+    direction: rtl;
+    background-color: #a7a7a780;
+}
+
+#container{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#products{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:  30px;
+}
+
+.prod1{
+    text-align: center;
+    background-color: white;
+    box-shadow: rgba(128, 128, 128, 0.462) 0px 0px 8px 3px;
+    border-radius: 20px;
+    padding: 20px;
+    width: 20%;
+}
+
+.prod1 button{
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    padding: 20px;
+}
+
+.prod1:nth-child(3n - 1) button{
+    background-color: #F75A5A;
+}
+
+.prod1:nth-child(3n + 0) button{
+    background-color: #FFA955;
+}
+
+.prod1:nth-child(3n + 1) button{
+    background-color: #FFD63A ;
+}
+
+#ShoppingCart{
+    width: 20%;
+}
+
+#ShoppingCart .prod2{
+    background-color: white;
+    padding: 20px;
+    margin: 30px 20px;
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    box-shadow: rgba(128, 128, 128, 0.462) 0px 0px 8px 3px;
+}
+
+.prod2 *{
+    margin: 0;
+    padding: 0;
+}
+
+.prod2 h5{
+    margin-top: 5px;
+}
+
+.prod2 button{
+    background-color: #6DE1D2;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}
+
+#control{
+    padding: 50px;
+    text-align: center;
+}
+
+#control input, #control button{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+input::placeholder{
+    color: #00b3ff;
+}
+
+#control button{
+    background-color: #00b3ff;
+}
+
+h2{
+    width: 100%;
+    text-align: center;
+}
+
+i{
+    margin-right: 10px;
+}
