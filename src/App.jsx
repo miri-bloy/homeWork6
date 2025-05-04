@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
+  
   // מערך המוצרים 
   const [products, setProducts]=useState([
     {id:1, name:"aaa", price:10},
