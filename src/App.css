@@ -3,6 +3,15 @@ body{
     background-color: #a7a7a780;
 }
 
+button, input{
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
 #container{
     display: flex;
     flex-wrap: nowrap;
@@ -26,10 +35,7 @@ body{
 }
 
 .prod1 button{
-    color: white;
-    font-weight: bold;
     border-radius: 10px;
-    border: none;
     padding: 20px;
 }
 
@@ -47,16 +53,33 @@ body{
 
 #ShoppingCart{
     width: 20%;
+    display: flex;
+    flex-direction: column;
 }
 
 #ShoppingCart .prod2{
     background-color: white;
     padding: 20px;
-    margin: 30px 20px;
+    margin: 10px;
     display: flex;
     justify-content: space-evenly;
     border-radius: 20px;
     box-shadow: rgba(128, 128, 128, 0.462) 0px 0px 8px 3px;
+}
+
+#end{
+    margin-top: auto;
+    text-align: center;
+}
+
+#end button{
+    padding: 20px;
+    background-color: #6DE1D2;
+    box-shadow: rgba(128, 128, 128, 0.462) 0px 0px 8px 3px;
+}
+
+h6{
+    font-size: medium;
 }
 
 .prod2 *{
@@ -70,10 +93,6 @@ body{
 
 .prod2 button{
     background-color: #6DE1D2;
-    color: white;
-    font-weight: bold;
-    border-radius: 10px;
-    border: none;
     padding: 10px;
 }
 
@@ -86,8 +105,16 @@ body{
     margin: 10px;
     padding: 10px;
     border-radius: 5px;
-    border: none;
-    outline: none;
+    box-shadow: rgba(128, 128, 128, 0.462) 0px 0px 8px 3px;
+}
+
+#control input{
+    cursor: text;
+    color: #00b3ff;
+}
+
+input:focus{
+    border: 2px solid black;
 }
 
 input::placeholder{
