@@ -20,7 +20,15 @@ function App() {
   const [valueName, setValueName] = useState("");
   // משתנה המקבל את הערך שהוכנס באינפוט של המחיר
   const [valuePrice, setvaluePrice] = useState("");
-
+  // משתנה המקבל את סוג המשתמש
+  const [user, setUser] = useState("manager");
+  // משתנה המקבל את מספר הכפתור עליו לחצו
+  const [numFact, setNumFact] = useState(-1);
+  // מערך של עובדות מעניינות על פרחים
+  const arrFacts = ["הידעת? במאה ה-17 בהולנד, בצלצלי צבעונים מסוימים היו שווים יותר מזהב, והמסחר בהם יצר בועה כלכלית ענקית!",
+    "הידעת? ישנם פרחים (כמו סוגים מסוימים של קקטוסים) שפורחים רק בלילה, פותחים את עלי הכותרת שלהם עם השקיעה כדי למשוך מאביקים ליליים כמו עש או עטלפים!",
+    "הידעת? פרחים מסוימים אינם רק ליופי - הם גם אכילים ומשמשים במטבח! דוגמאות כוללות פרחי כובע הנזיר, קלנדולה ואפילו סוגים מסוימים של ורדים וסיגליות, המוסיפים צבע וטעם לסלטים וקינוחים."
+  ];
   //פונקצייה המקבלת אובייקט מוצר ומוסיפה אותו למערך המוצרים של העגלה
   const addP = (product) => {
     //עדכון מערךל מוצרי העגלה-כך שיהיה שווה לתוכן שלו + האובייקט שנוסף
@@ -57,6 +65,8 @@ function App() {
   // פונקציה המציגה הודעת סיום
   const ending = () => {
     alert("הזמנתך התקבלה")
+    // ריקון העגלה
+    setShoppingCart([]);
   }
 
   // משתנה השומר את כמות המוצרים בעגלה
@@ -83,7 +93,6 @@ function App() {
               <button onClick={() => addP(p)}>הוסף לסל</button>
             </div>)}
         </div>
-
         <div id="ShoppingCart">
           <h2>עגלת קניות<i class="fa-solid fa-cart-shopping"></i></h2>
           {/* רנדור מערך המוצרים שבעגלה */}
@@ -96,18 +105,50 @@ function App() {
           <div id="end">
             <h6>מספר מוצרים: {countProducts}</h6>
             <h6>סכום לתשלום: {amountPay}</h6>
-            <button onClick={ending}>בצע הזמנה</button>
+            {/* עיצוב מותנה-אם העגלה מלאה-הכפתור של ביצוע הזמנה מקבל רקע אדום */}
+            <button onClick={ending} style={{ backgroundColor: ShoppingCart.length > 0 ? "black" : "#00ffe5"}}>בצע הזמנה</button>
           </div>
         </div>
       </div>
-
-      <div id="control">
-        <h2>הוספת מוצרים לאתר<i class="fa-solid fa-square-plus"></i></h2>
-        <input type="text" placeholder="שם מוצר" value={valueName}
-          onChange={(event) => { setValueName(event.target.value) }} />
-        <input type="text" placeholder="מחיר מוצר" value={valuePrice}
-          onChange={(event) => { setvaluePrice(parseInt(event.target.value)) }} />
-        <button type="button" onClick={addNewP}>הוסף</button>
+      <div id="footer">
+        <div id="facts">
+          <h2>הידעת?</h2>
+          <h3>3 עובדות שעשויות לעניין אתכם</h3>
+          <div id="containerFacts">
+            <div id="buttons">
+              <button className={numFact == 0 ? 'selected' : ''}
+               onClick={() => setNumFact(0)}>היסטוריה מרתקת</button>
+              <button className={numFact == 1 ? 'selected' : ''}
+              onClick={() => setNumFact(1)}>סודות הפריחה</button>
+              <button className={numFact == 2 ? 'selected' : ''}
+               onClick={() => setNumFact(2)}>שימושים מפתיעים</button>
+            </div>
+            <button onClick={() => setNumFact(-1)}>ניקוי בחירה</button>
+            {/* הצגת עובדה מעניינת-לפי הכפתור עליו המשתמש לחץ */}
+            <div id="fact">{numFact != -1 ? arrFacts[numFact] : "בחרו את התחום בו תרצו להעשיר את הידע שלכם..."}</div>
+          </div>
+        </div>
+        <div id="sign_in">
+          <h2>כניסת משתמשים</h2>
+          <button className={user == "manager" ? 'selected' : ''}
+           onClick={() => setUser("manager")}>מנהל</button>
+          <button className={user == "user" ? 'selected' : ''}
+           onClick={() => setUser("user")}>משתמש</button>
+        </div>
+        <div>
+          {user=="user" && 
+          <img src="/images/gif.gif" alt="תיאור התמונה" />}
+          
+          {/* בדיקה האם האדם הוא מנהל, אם כן-הצגת כל הטופס של הוספת מוצר לאתר */}
+          {user == "manager" && <div id="control">
+            <h2>הוספת מוצרים לאתר<i class="fa-solid fa-square-plus"></i></h2>
+            <input type="text" placeholder="שם מוצר" value={valueName}
+              onChange={(event) => { setValueName(event.target.value) }} />
+            <input type="text" placeholder="מחיר מוצר" value={valuePrice}
+              onChange={(event) => { setvaluePrice(parseInt(event.target.value)) }} />
+            <button type="button" onClick={addNewP}>הוסף</button>
+          </div>}
+        </div>
       </div>
     </div>
   );
