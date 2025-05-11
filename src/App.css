@@ -12,6 +12,34 @@ button, input{
     outline: none;
 }
 
+#box{
+    text-align: center;
+}
+
+#boxInput{
+    border: 1px black solid;
+    background-color: white;
+    padding: 0px;
+    width: 25%;
+    border-radius: 20px;
+    margin: 20px;
+}
+
+#search{
+    padding: 10px;
+    width: 300px;
+    border: none;
+    color: black;
+}
+
+#search::placeholder{
+    color: black;
+}
+
+#boxInput i{
+    margin-right: auto;
+}
+
 #container{
     display: flex;
     flex-wrap: nowrap;
@@ -30,8 +58,14 @@ button, input{
     background-color: white;
     box-shadow: rgba(128, 128, 128, 0.462) 0px 0px 8px 3px;
     border-radius: 20px;
-    padding: 20px;
+    padding: 20px 0;
     width: 20%;
+    margin: 50px;
+}
+
+.prod1 img{
+    height: 200px;
+    margin-bottom: 30px;
 }
 
 .prod1 button{
@@ -68,14 +102,12 @@ button, input{
 }
 
 #end{
-    margin-top: auto;
     text-align: center;
 }
 
 #end button{
     padding: 20px;
     background-color: #00ffe5;
-    /* box-shadow: rgba(128, 128, 128, 0.462) 0px 0px 8px 3px; */
 }
 
 h6{
@@ -169,7 +201,7 @@ h6{
     text-align: center;
 }
 
-#control input{
+input{
     cursor: text;
     color: #00b3ff;
     border: #00b3ff solid 1px;
@@ -196,6 +228,6 @@ i{
     margin-right: 10px;
 }
 
-img{
+#footer img{
 width: 80%;
 }

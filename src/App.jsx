@@ -6,16 +6,20 @@ function App() {
 
   // מערך המוצרים 
   const [products, setProducts] = useState([
-    { id: 1, name: "ורדים ", price: 10 },
-    { id: 2, name: "ליליות ", price: 20 },
-    { id: 3, name: "סחלבים", price: 30 },
-    { id: 4, name: "כלניות ", price: 40 },
-    { id: 5, name: "נוריות", price: 50 },
-    { id: 6, name: "לוע הארי", price: 60 }
+    { id: 1, name: "ורדים", price: 10, img: "/images/ורדים.jpg" },
+    { id: 2, name: "ליליות", price: 20, img: "/images/ליליות.jpg" },
+    { id: 3, name: "סחלבים", price: 30, img: "/images/סחלבים.jpg" },
+    { id: 4, name: "כלניות", price: 40, img: "/images/כלניות.jpg" },
+    { id: 5, name: "נוריות", price: 50, img: "/images/נוריות.jpg" },
+    { id: 6, name: "לוע הארי", price: 60, img: "/images/לוע הארי.jpg" }
   ]);
 
+  // 
+  const [copyProducts, setCopyProducts]=useState(products);
   // מערך המוצרים בעגלה
   const [ShoppingCart, setShoppingCart] = useState([]);
+  //משתנה המקבל את הערך שהוכנס באינפוט של החיפוש
+  const [valueSearch, setValueSearch] = useState("");
   //משתנה המקבל את הערך שהוכנס באינפוט של השם
   const [valueName, setValueName] = useState("");
   // משתנה המקבל את הערך שהוכנס באינפוט של המחיר
@@ -53,10 +57,13 @@ function App() {
     const newProduct = {
       id: products[products.length - 1].id + 1,
       name: valueName,
-      price: valuePrice
+      price: valuePrice,
+      img: "/images/ברירת מחדל.jpg"
     };
     //עדכון מערך המוצרים, כך שיתווסף אליו האובייקט החדש
     setProducts([...products, newProduct]);
+    // עדכון המערך שמכיל בפועל את המוצרים שמציגים על המסך
+    setCopyProducts(products);
     // ריקון האינפוטים
     setValueName("");
     setvaluePrice("");
@@ -67,6 +74,14 @@ function App() {
     alert("הזמנתך התקבלה")
     // ריקון העגלה
     setShoppingCart([]);
+  }
+
+  // פונקציה המקבלת טקסט לחיפוש
+  // ומעדכנת את מערך המוצרים לפי המוצרים העומדים בתנאי החיפוש
+  const search=(text)=>{
+    setValueSearch(text);
+    const filterArr=products.filter(p=> p.name.includes(text));
+    setCopyProducts(filterArr);
   }
 
   // משתנה השומר את כמות המוצרים בעגלה
@@ -81,15 +96,22 @@ function App() {
 
   return (
 
-    <div>
+    <div id='box'>
+      <div id='boxInput'>
+        <input type="text" onChange={(event)=> search(event.target.value)}
+       value={valueSearch} placeholder='חיפוש מוצר...' id='search'/>
+       <i class="fa-solid fa-magnifying-glass"></i>
+       </div>
       <div id="container">
         <div id="products">
           <h2>מוצרים<i class="fa-solid fa-bag-shopping"></i></h2>
           {/* רנדור מערך המוצרים */}
-          {products.map(p =>
+          {copyProducts.map(p =>
             <div className="prod1">
               <h3>{p.name}</h3>
               <h4>מחיר: {p.price} ש"ח</h4>
+              <img src={p.img}/>
+              <br />
               <button onClick={() => addP(p)}>הוסף לסל</button>
             </div>)}
         </div>
